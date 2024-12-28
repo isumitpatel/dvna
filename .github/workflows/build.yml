@@ -20,7 +20,7 @@ jobs:
         run: |
           if [ -f .env ]; then
             echo ".env file exists. Removing the old .env file."
-            rm .env
+            del .env
           fi
           echo "Creating a new .env file."
           echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env

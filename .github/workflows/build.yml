@@ -16,18 +16,30 @@ jobs:
         with:
           node-version: '18.x'
       
-      - name: Check and recreate .env file
+      - name: Update .env file
         run: |
-          if [ -f .env ]; then
-            echo ".env file exists. Removing the old .env file."
-            del .env
-          fi
-          echo "Creating a new .env file."
-          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
-          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
-          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
-          echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> .env
-          echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> .env
+          $envFile = ".env"
+          if (!(Test-Path $envFile)) {
+            Write-Host ".env file does not exist. Creating a new one."
+            New-Item -Path $envFile -ItemType File -Force
+          }
+          Write-Host "Updating .env file with new values."
+          $envContent = Get-Content -Path $envFile -Raw
+          $updates = @{
+            "MYSQL_USER"     = "${{ secrets.MYSQL_USER }}"
+            "MYSQL_DATABASE" = "${{ secrets.MYSQL_DATABASE }}"
+            "MYSQL_HOST"     = "${{ secrets.MYSQL_HOST }}"
+            "MYSQL_PORT"     = "${{ secrets.MYSQL_PORT }}"
+          }
+          foreach ($key in $updates.Keys) {
+            if ($envContent -match "^$key=.*$") {
+              $envContent = $envContent -replace "^$key=.*$", "$key=$($updates[$key])"
+            } else {
+              $envContent += "`n$key=$($updates[$key])"
+            }
+          }
+          Set-Content -Path $envFile -Value $envContent
+        shell: pwsh
 
       - name: Install dependencies
         run: npm install

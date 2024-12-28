@@ -28,6 +28,7 @@ jobs:
           $updates = @{
             "MYSQL_USER"     = "${{ secrets.MYSQL_USER }}"
             "MYSQL_DATABASE" = "${{ secrets.MYSQL_DATABASE }}"
+            "MYSQL_PASSWORD" = "${{ secrets.MYSQL_PASSWORD }}"
             "MYSQL_HOST"     = "${{ secrets.MYSQL_HOST }}"
             "MYSQL_PORT"     = "${{ secrets.MYSQL_PORT }}"
           }
@@ -39,7 +40,7 @@ jobs:
             }
           }
           Set-Content -Path $envFile -Value $envContent
-        shell: pwsh
+        shell: powershell
 
       - name: Install dependencies
         run: npm install

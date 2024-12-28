@@ -42,11 +42,6 @@ jobs:
     - name: Create a ZIP archive of the repository
       run: |
         zip -r ${{ env.ApplicationFile }} . -x ".git/*" ".github/*"
-
-    - name: Project Dir
-    run: |
-    Write-Host "FusionLiteProject: $env:FusionLiteProject"
-    shell: powershell
       
     - name: Clean Project
       run: |

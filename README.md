@@ -107,9 +107,10 @@ Clone the repository
 git clone https://github.com/appsecco/dvna; cd dvna
 ```
 
-Configure the environment variables with your database information
+Configure the environment variables with your database information and node version
 
-1. Configure your .env variables
+1. Required Node Version v18.20.5
+2. Configure your .env variables
 
 Install Dependencies
 

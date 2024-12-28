@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: iApp-Sumit
+    runs-on: self-hosted
 
     steps:
       

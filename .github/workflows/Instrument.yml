@@ -41,7 +41,11 @@ jobs:
       
     - name: Create a ZIP archive of the repository
       run: |
-        zip -r ${{ env.ApplicationFile }} . -x ".git/*" ".github/*"
+        zip -r ${{ env.ApplicationFile }} . -x ".git/*" ".github/*" > $null 2>&1
+
+    - name: project dir path
+      run: |
+        echo "FusionLiteProject: ${{ $env:FusionLiteProject }}"
       
     - name: Clean Project
       run: |

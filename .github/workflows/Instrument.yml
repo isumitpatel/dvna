@@ -45,7 +45,7 @@ jobs:
 
     - name: project dir path
       run: |
-        echo "FusionLiteProject: ${{ $env:FusionLiteProject }}"
+        echo "FusionLiteProject: ${{ env:FusionLiteProject }}"
       
     - name: Clean Project
       run: |

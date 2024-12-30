@@ -70,7 +70,7 @@ jobs:
       run: |
           $cmdtext = "Instrument" + ":" + $env:FusionLiteProject
           echo "Cmd : $cmdtext"
-          ssh -i $env:FusionLiteServerKeyFile -p $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost $cmdtext
+          ssh -i $env:FusionLiteServerKeyFile -p $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost $cmdtext > $null 2>&1
 
     - name: PostProcess Project
       run: |

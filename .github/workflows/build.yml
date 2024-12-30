@@ -47,3 +47,7 @@ jobs:
 
       #- name: Build the application
       # run: npm start
+
+      #- name: Stop the application
+       # run: taskkill /F /IM node.exe
+       

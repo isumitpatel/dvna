@@ -1,1 +1,13 @@
+name: run
 
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+
+    - name: Start Instrumented Application
+    

@@ -32,7 +32,7 @@ jobs:
           # Run the SFTP command to list files
           #sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
 
-          unzip $InstrumentedFolder/$InstrumentedFile 
+          unzip $InstrumentedFolder/$InstrumentedFile -d .
 
           # Remove Instrumented Zip
         #  rm $InstrumentedFolder/$InstrumentedFile

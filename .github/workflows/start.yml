@@ -31,6 +31,9 @@ jobs:
         run: |
           # Using unzip command to extract the file and overwrite
           unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder/Instrumented-Application" > $null 2>&1
+
+      - name: Start Application
+        run: set NODE_PATH=. && start /B npm start
       
       # Uncomment if you want to remove the Instrumented Zip
       # - name: Remove Instrumented Zip

@@ -20,9 +20,18 @@ jobs:
       InstrumentedFile: ${{ github.event.repository.name }}.zip
 
     steps:
-      - name: Print Environment Variable
+      - name: Print Environment Variable and Unzip File
         run: |
-          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject/Output/${{ github.event.repository.name }}.zip"
-          echo "lcd $env:InstrumentedFolder; cd $env:FusionLiteProject/Output; pwd; exit" | sftp -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
+          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject"
+          
+          # Define paths for the zip file and extraction destination
+          $zipFile = "$env:FusionLiteProject/Output/$($env:FusionLiteProject).zip"
+          $destination = "$env:FusionLiteProject/Output/unzipped"
 
+          # Ensure the destination directory exists
+          if (-not (Test-Path -Path $destination)) {
+              New-Item -ItemType Directory -Path $destination
+          }
 
+          # Unzip the file
+          Expand-Archive -Path $zipFile -DestinationPath $destination

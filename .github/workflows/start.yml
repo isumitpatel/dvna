@@ -7,7 +7,19 @@ jobs:
   build:
     runs-on: self-hosted
 
+    env:
+      FusionLiteServerHost: ${{ vars.FUSIONLITE_SERVER_HOST }}
+      FusionLiteServerPort: ${{ vars.FUSIONLITE_SERVER_PORT }}
+      FusionLiteServerUser: ${{ secrets.FUSIONLITE_SERVER_USER }}
+      FusionLiteServerKeyFile: ${{ secrets.FUSIONLITE_SERVER_KEY_FILE }}
+      FusionLiteProject: ${{ github.event.repository.name }}
+      ApplicationFile: ${{ github.event.repository.name }}.zip
+      ApplicationInclude: ""
+      ApplicationExclude: ""
+      InstrumentedFolder: Instrumented
+      InstrumentedFile: ${{ github.event.repository.name }}.zip
+
     steps:
       - name: Print Environment Variable
         run: |
-          Write-Output "The value of FusionLiteProject/Output is: $env:FusionLiteProject"
+          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject"

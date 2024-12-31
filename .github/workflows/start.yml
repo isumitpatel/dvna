@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Create Folder
         run: |
-          if not exist "Instrumented-Application" mkdir Instrumented-Application
+          cmd /C "if not exist Instrumented-Application mkdir Instrumented-Application"
 
       - name: Instrumented File Unzip
         run: |

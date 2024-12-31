@@ -23,15 +23,11 @@ jobs:
       - name: Print Environment Variable and Unzip File
         run: |
           Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject"
-          
-          # Define paths for the zip file and extraction destination
-          $zipFile = "$env:FusionLiteProject/Output/$($env:FusionLiteProject).zip"
-          $destination = "$env:FusionLiteProject/Output/unzipped"
+      
+      - name: Listing Available Files in Output Folder
+        run: |
+          # Create the SFTP command to list files in the output folder
+          echo "cd $env:FusionLiteProject/Output`nls`nexit" | Out-File -FilePath "sftp_list.txt" -Encoding ASCII
 
-          # Ensure the destination directory exists
-          if (-not (Test-Path -Path $destination)) {
-              New-Item -ItemType Directory -Path $destination
-          }
-
-          # Unzip the file
-          Expand-Archive -Path $zipFile -DestinationPath $destination
+          # Run the SFTP command to list files
+          sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost

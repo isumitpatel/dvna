@@ -24,10 +24,13 @@ jobs:
       InstrumentedFile: ${{ github.event.repository.name }}.zip
 
     steps:
+      - name: Create Folder
+         mkdir Instrumented-Application
+    
       - name: Instrumented File Unzip
         run: |
           # Using unzip command to extract the file and overwrite
-          unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder" > $null 2>&1
+          unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder/Instrumented-Application" > $null 2>&1
       
       # Uncomment if you want to remove the Instrumented Zip
       # - name: Remove Instrumented Zip

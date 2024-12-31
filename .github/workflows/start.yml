@@ -10,4 +10,5 @@ jobs:
     steps:
 
     - name: Start Instrumented Application
+       echo "cd $env:FusionLiteProject/Output"
     

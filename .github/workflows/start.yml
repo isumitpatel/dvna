@@ -22,4 +22,4 @@ jobs:
     steps:
       - name: Print Environment Variable
         run: |
-          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject"
+          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject/Output/$env:FusionLiteProject.zip"

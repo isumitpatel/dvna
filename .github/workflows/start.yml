@@ -27,7 +27,7 @@ jobs:
       - name: Instrumented File Unzip
         run: |
           # Using unzip command to extract the file and overwrite
-          unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder"
+          unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder" > $null 2>&1
       
       # Uncomment if you want to remove the Instrumented Zip
       # - name: Remove Instrumented Zip

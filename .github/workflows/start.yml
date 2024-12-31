@@ -8,7 +8,6 @@ jobs:
     runs-on: self-hosted
 
     steps:
-
-    - name: Start Instrumented Application
-       echo "cd $env:FusionLiteProject/Output"
-    
+      - name: Print Environment Variable
+        run: |
+          Write-Output "The value of FusionLiteProject/Output is: $env:FusionLiteProject"

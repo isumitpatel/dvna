@@ -27,7 +27,15 @@ jobs:
       - name: Listing Available Files in Output Folder
         run: |
           # Create the SFTP command to list files in the output folder
-          echo "cd $env:FusionLiteProject/Output`nls`nexit" | Out-File -FilePath "sftp_list.txt" -Encoding ASCII
+          #echo "cd $env:FusionLiteProject/Output`nls`nexit" | Out-File -FilePath "sftp_list.txt" -Encoding ASCII
 
           # Run the SFTP command to list files
-          sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
+          #sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
+
+          unzip $InstrumentedFolder/$InstrumentedFile -d $InstrumentedFolder
+
+          # Remove Instrumented Zip
+        #  rm $InstrumentedFolder/$InstrumentedFile
+
+
+          

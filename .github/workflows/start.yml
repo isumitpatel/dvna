@@ -24,22 +24,12 @@ jobs:
       InstrumentedFile: ${{ github.event.repository.name }}.zip
 
     steps:
-      - name: Print Environment Variable and Unzip File
+      - name: Instrumented File Unzip
         run: |
-          Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject"
+          # Using unzip command to extract the file and overwrite
+          unzip -o "$env:InstrumentedFolder\$env:InstrumentedFile" -d "$env:InstrumentedFolder"
       
-      - name: Listing Available Files in Output Folder
-        run: |
-          # Create the SFTP command to list files in the output folder
-          #echo "cd $env:FusionLiteProject/Output`nls`nexit" | Out-File -FilePath "sftp_list.txt" -Encoding ASCII
-
-          # Run the SFTP command to list files
-          #sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
-
-          unzip $env:InstrumentedFolder\$env:InstrumentedFile -d $env:InstrumentedFolder\testunzip
-
-          # Remove Instrumented Zip
-        #  rm $InstrumentedFolder/$InstrumentedFile
-
-
-          
+      # Uncomment if you want to remove the Instrumented Zip
+      # - name: Remove Instrumented Zip
+      #   run: |
+      #     Remove-Item -Path "$env:InstrumentedFolder\$env:InstrumentedFile" -Force

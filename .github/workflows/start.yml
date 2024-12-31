@@ -1,4 +1,4 @@
-name: run
+name: start
 
 on:
   workflow_dispatch:

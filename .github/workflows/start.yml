@@ -36,7 +36,7 @@ jobs:
           # Run the SFTP command to list files
           #sftp -b sftp_list.txt -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
 
-          unzip $env:InstrumentedFolder\$env:InstrumentedFile -d $env:InstrumentedFolder
+          unzip $env:InstrumentedFolder\$env:InstrumentedFile -d $env:InstrumentedFolder\testunzip
 
           # Remove Instrumented Zip
         #  rm $InstrumentedFolder/$InstrumentedFile

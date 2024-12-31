@@ -23,5 +23,6 @@ jobs:
       - name: Print Environment Variable
         run: |
           Write-Output "The value of FusionLiteProject is: $env:FusionLiteProject/Output/${{ github.event.repository.name }}.zip"
-          echo "lcd $env:InstrumentedFolder`ncd $env:FusionLiteProject/Output`npwd`nexit"
+          echo "lcd $env:InstrumentedFolder; cd $env:FusionLiteProject/Output; pwd; exit" | sftp -i $env:FusionLiteServerKeyFile -P $env:FusionLiteServerPort $env:FusionLiteServerUser@$env:FusionLiteServerHost
+
 

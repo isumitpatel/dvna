@@ -111,6 +111,13 @@ Configure the environment variables with your database information and node vers
 
 1. Required Node Version v18.20.5
 2. Configure your .env variables
+    ```
+    MYSQL_USER=dvna
+    MYSQL_DATABASE=dvna
+    MYSQL_PASSWORD=passw0rd
+    MYSQL_HOST=127.0.0.1
+    MYSQL_PORT=3306
+    ```
 
 Install Dependencies
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FusionLiteProject" basedir=".">
+
+    <target name="project-preprocess">
+
+        <unzip src="${Application}/Input/${APPLICATION}" dest="${Project}/Original-Application"/>
+
+        <antcall target="project-preprocess-folder"/>
+
+    </target>
+
+    <target name="project-postprocess">
+
+        <antcall target="project-postprocess-folder"/>
+
+        <zip basedir="${Project}/Instrumented-Application" destfile="${Application}/Output/${APPLICATION}" compress="false"/>
+
+    </target>
+
+</project>
